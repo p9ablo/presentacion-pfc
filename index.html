@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <!-- Slide meta data, remove/edit as you see fit -->
+        <title>Presentación PFC</title>
+        <meta name="generator" content="Organic" />
+        <meta name="author" content="Pablo Alonso Peralta" />
+        <meta name="company" content="Nelmio AG" />
+        <meta name="email" content="j.boggiano@seld.be" />
+        <meta name="date" content="2010-05-30" />
+        <meta name="venue" content="The Internets" />
+        <!-- Slippy core file and dependencies -->
+        <script type="text/javascript" src="jquery.min.js"></script>
+        <script type="text/javascript" src="jquery.history.js"></script>
+        <script type="text/javascript" src="slippy.js"></script>
+        <!-- Slippy structural styles -->
+        <link type="text/css" rel="stylesheet" href="slippy.css"/>
+        <!-- Slippy theme -->
+        <link type="text/css" rel="stylesheet" href="slippy-pure.css"/>
+        <!-- Syntax highlighting core file  -->
+        <script type="text/javascript" src="highlighter/shCore.js"></script>
+        <!-- Syntax highlighting brushes, remove those you don't need -->
+        <script type="text/javascript" src="highlighter/shBrushBash.js"></script>
+        <script type="text/javascript" src="highlighter/shBrushCpp.js"></script>
+        <script type="text/javascript" src="highlighter/shBrushCSharp.js"></script>
+        <script type="text/javascript" src="highlighter/shBrushCss.js"></script>
+        <script type="text/javascript" src="highlighter/shBrushDelphi.js"></script>
+        <script type="text/javascript" src="highlighter/shBrushDiff.js"></script>
+        <script type="text/javascript" src="highlighter/shBrushGroovy.js"></script>
+        <script type="text/javascript" src="highlighter/shBrushJava.js"></script>
+        <script type="text/javascript" src="highlighter/shBrushJScript.js"></script>
+        <script type="text/javascript" src="highlighter/shBrushPhp.js"></script>
+        <script type="text/javascript" src="highlighter/shBrushPlain.js"></script>
+        <script type="text/javascript" src="highlighter/shBrushPython.js"></script>
+        <script type="text/javascript" src="highlighter/shBrushRuby.js"></script>
+        <script type="text/javascript" src="highlighter/shBrushScala.js"></script>
+        <script type="text/javascript" src="highlighter/shBrushSql.js"></script>
+        <script type="text/javascript" src="highlighter/shBrushVb.js"></script>
+        <script type="text/javascript" src="highlighter/shBrushXml.js"></script>
+        <!-- Syntax highlighting styles-->
+        <link type="text/css" rel="stylesheet" href="highlighter/shCore.css"/>
+        <link type="text/css" rel="stylesheet" href="highlighter/shThemeEclipse.css"/>
+        <link type="text/css" rel="stylesheet" href="miEstilo.css"/>
+        <link type="text/css" rel="stylesheet" href="style-list.css"/>
+        <!-- Slippy init code -->
+        <script type="text/javascript">
+            $(function() {
+                $(".slide").slippy({
+                    // settings go here
+                    // possible values are:
+                    //  - animLen, duration for default animations (0 = disabled)
+                    //  - animInForward, receives a slide and animates it
+                    //  - animInRewind, receives a slide and animates it
+                    //  - animOutForward, receives a slide and animates it
+                    //  - animOutRewind, receives a slide and animates it
+                    //  - baseWidth, defines the base for img resizing, if you don't want only
+                    //    full-width images, specify this as the pixel width of a slide so that
+                    //    images are scaled properly (default is 620px wide)
+                    //  - ratio, defines the width/height ratio of the slides, defaults to 1.3 (620x476)
+                    //  - margin, the fraction of screen to use as slide margin, defaults to 0.15
+                });
+                SyntaxHighlighter.all();
+            });
+        </script>
+        <!-- Custom style for this deck -->
+        <style type="text/css">
+            .slide.nofooter {
+                border: 0;
+                background: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="slide" data-layout="alt">
+            <center style="text-align: center;vertical-align: middle;">
+                <div style="font-size:50px;font-weight: bold;">Proyecto Fin de Carrera</div>
+                <p style="font-size:40px; color: red;">Videojuego Lucha 3D</p>
+                <p style="font-size:30px; color:grey;">Pablo Alonso Peralta</p>
+                <img src="img/logos/logo-uca.png" height="300px"><img/>
+                <br><br>
+                <p>Departamento: Ingeniería Informática</p>
+                <p>Director del proyecto: Manuel Palomo Duarte y Antonio Balderas Alberico</p>
+                <p><a href"https://bitbucket.org/p9ablo/pfc-blender-lucha">https://bitbucket.org/p9ablo/pfc-blender-lucha</a></p>
+                <p>Presentación creada en <a href="https://github.com/Seldaek/slippy">slippy</a></p>
+            </center>
+        </div>
+		<div class="slide" >
+            <h1>Indice</h1>
+                	<div class="imglist" style="margin-left:30px">
+            		<ul >
+                        <li>Introducción</li>
+            			<li>Características</li>
+            			<li>Requisitos hardware</li>
+            			<li>Lenguajes y software</li>
+            			<li>Implementación y problemas</li>
+            			<li>Pruebas</li>
+            			<li>Futuras mejoras</li>
+                        <li>Conclusiones</li>
+            		</ul>
+            		</div>
+        </div>
+        <div class="slide" data-layout="alt">
+            <h1>Introducción</h1>
+            <br>
+        
+            <div class="imglist" style="vertical-align: center;">
+            <ul >
+			<!--
+                <li>¿Por qué un videojuego?</li>
+                <p>El tipo de proyecto que más motivación me proporciona</p>
+                <br>-->
+                <li>Objetivo</li>
+                <p>Desarrollar un videojuego multiplataforma (Linux, Mac, Windows) de lucha con vista clásica de cámara 2D pero con personajes y escenarios en 3D. </p>
+                <br>
+         
+                <li>Información general</li>
+                <p>Todo desarrollado en Linux con herramientas libres</p>
+                <br>
+
+                
+				
+            </ul>
+            </div>
+        </div>
+		
+		 <div class="slide">
+            <h1>Objetivo</h1>
+            <img src="img/menu_ko.png"></img>
+            <center>Superar a la CPU para dejar KO al luchador rival.</center>
+        </div>
+
+        <div class="slide" >
+            <h1>Características</h1>
+            <br>
+            <div class="imglist">
+            <ul>
+                <li>Multidioma (español, inglés, alemán, francés, italiano)</li>
+                <li>Control por teclado de los personajes del videojuego</li>
+				<li>Control por ratón la navegación entre los menús</li>
+                <li>Opciones del videojuego (resolución, sonido de movimientos, aspecto, pantalla completa y música)</li>
+                
+                <li>Multiples escenarios y personajes</li>
+                <li>Control de jugador y CPU</li>
+                <li>Datos de los personajes en JSON, para facilitar futuras mejoras</li>
+            </ul>
+            </div>
+        </div>
+
+        
+       
+		<!--
+        <div class="slide" data-layout="alt">
+            <h1>Navegación por los menus</h1>
+  
+            <img src="img/menu_principal.png" ></img>
+            <br>
+            <center>Navegación con ratón</center>
+        </div>
+        -->
+
+        <div class="slide">
+            <h1>Requisitos</h1>
+            <ul>
+                <li>Linux, Windows XP y superiores, Mac OSX 10.6 y superiores</li>
+            </ul>  
+            <br>
+            <h2>Hardware minimo</h2>      
+            <ul>
+                <li>32-bit dual core 2Ghz CPU with SSE2 support.</li>
+                <li>2 GB RAM</li>
+                <li>24 bits 1280×768 display</li>
+                <li>Mouse or trackpad</li>
+                <li>OpenGL 2.1 compatible graphics with 512 MB RAM</li>
+            </ul>    
+            <br>
+            <h2>Hardware Recomendado</h2>  
+            <ul>
+                <li>64-bit quad core CPU</li>
+                <li>8 GB RAM</li>
+                <li>Full HD display with 24 bit color</li>
+                <li>Three button mouse</li>
+                <li>OpenGL 3.2 compatible graphics with 2 GB RAM</li>
+            </ul>
+        </div>
+
+        <div class="slide">
+            <h1>Desarrollo</h1>
+            <div class="imglist">
+                <ul>
+                    <li>Metodología</li>
+                    <li>Planificación</li>
+                    <li>Recursos</li>
+                    <li>Lenguajes de programación</li>
+                    <li>Software</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="slide" data-layout="alt">
+            <h1>Metodología de desarrollo</h1>
+            <br>
+            <center>
+            <h2>Modelo por prototipo</h2>
+            <br>
+                <img src="img/prototipo.jpg"></img>
+                
+            </center>
+        </div>
+
+        <div class="slide" data-layout="alt">
+            <center style="text-align: center;">
+                <div style="font-size:50px;font-weight: bold;margin-top: 30%;">Planificación</div>
+            </center>
+        </div>
+        
+        <div class="slide">
+            <h1>Planificación (Gantt)</h1>
+            <img src="img/gantt.png" style="width:850px"></img>
+        </div>
+        <!--
+        <div class="slide">
+            <h1>Desarrollo modelo de prototipos</h1>
+            <img src="img/gantt-semanas.png"></img>
+        </div>
+		-->
+        <div class="slide" data-layout="alt">
+            <center style="text-align: center;">
+                <div style="font-size:50px;font-weight: bold;margin-top: 30%;">Recursos</div>
+            </center>
+            <div class="imglist">
+            <ul>
+                <li>Música</li>
+                <li>Modelos 3D</li>
+                <li>Imágenes</li>
+            </ul>
+            </div>
+        </div>
+
+        <div class="slide" data-layout="alt">
+            <img src="img/recursos.png"></img>
+            
+        </div>
+        
+        <div class="slide" data-layout="alt">
+            <center style="text-align: center;">
+                <div style="font-size:50px;font-weight: bold;margin-top: 30%;">Lenguajes</div>
+            </center>
+        </div>
+        <div class="slide" data-layout="alt">
+            <h1>Lenguajes</h1>
+            <br><br>
+            <center>
+            	<img src="img/logos/python.png" style="width:500px;"/>
+                <img src="img/logos/latex_logo.png" style="width:300px;"/>
+                <br>
+                <img src="img/logos/html.png" style="width:200px;"/>
+            </center>
+        </div>
+
+        <div class="slide" data-layout="alt">
+            <center style="text-align: center;">
+                <div style="font-size:50px;font-weight: bold;margin-top: 30%;">Software</div>
+            </center>
+        </div>
+
+        <div class="slide" data-layout="alt">
+            <h2>Blender</h2>
+            <img src="img/blender.png" />  
+            <br><br>
+            <center>
+            Diseño 3D, animaciones y motor del juego    
+            </center>      
+        </div>
+
+        
+
+
+
+        
+
+        <div class="slide" data-layout="alt">
+            <h2>SublimeText</h2>
+            <img src="img/sublime.png" />
+            <br><br>
+            <center>
+            Escritura del código
+            </center>
+        </div>
+
+        <div class="slide" data-layout="alt">
+            <h2>Git</h2>
+            <img src="img/git.png" /> 
+            <br><br>
+            <center>     
+            Control versiones      
+            </center>
+        </div>
+
+        <div class="slide" data-layout="alt">
+            <h2>Poedit</h2>
+            <img src="img/poedit.png" />   
+            <br><br>
+            <center>
+            Traducciones de los textos del juego         
+            </center>
+        </div>
+
+        <div class="slide" data-layout="alt">
+            <h2>Gimp</h2>
+            <img src="img/gimp.png" /> 
+            <br><br>
+            <center>        
+            Retoque de imágenes 2D   
+            </center>
+        </div>
+
+        <div class="slide" data-layout="alt">
+            <h2>Texmaker</h2>
+            <img src="img/texmaker.png" />    
+            <br><br>
+            <center style="vertical-align: text-bottom;">Editor y compilador latex</center>
+        </div>
+
+        <div class="slide" data-layout="alt">
+            <h2>Pencil</h2>
+            <img src="img/pencil.png" />   
+            <br><br>
+            <center>
+            Bocetos de las pantallas    
+            </center>     
+        </div>
+
+        <div class="slide" data-layout="alt">
+            <h2>Dia</h2>
+            <img src="img/dia.png" />  
+            <br><br>
+            <center>
+            Imagenes del modelo UML   
+            </center>       
+        </div>
+
+        
+
+        <div class="slide"><br><br>
+            <h1>Implementación y problemas</h1><br><br>
+            <div class="imglist">
+                <ul>
+                    <li>Composición de los personajes</li>
+                    <li>Reducción de polígonos a los modelos</li>
+                    <li>Inteligencia Artificial implementada mediante una máquina de estados finito</li>
+                    <li>Dificultades</li>
+                    <li>Pruebas</li>
+                    <li>Futuras mejoras</li>
+                    <li>Conclusiones</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="slide" data-layout="alt">
+			<h1>Composición de los personajes</h1>
+			<div class="imglist">
+                <ul>
+                    <li>Malla</li>
+                    <li>Textura</li>
+                    <li>Esqueleto</li>
+					<li>Polígonos de colisión</li>
+              
+                </ul>
+            </div>
+			<br><br>
+			<center> <img src="img/RockGolem_mesh.jpg" style="width:400px;" /> </center>
+        </div>
+<!--
+        <div class="slide" data-layout="alt">
+            <h1>Resultado final</h1>
+            <img src="img/RockGolem_mesh.jpg" /> 
+        </div>
+-->
+        <div class="slide" data-layout="alt">
+            <h1>Malla</h1>
+            <img src="img/RockGolem_mesh_wireframe.jpg" /> 
+        </div>
+
+        <div class="slide" data-layout="alt">
+            <h1>Textura</h1>
+            <center>
+            <img src="img/RockGolem_texture.png" style="width:400px;"/> </center>
+        </div>
+
+        <div class="slide" data-layout="alt">
+            <h1>Esqueleto</h1>
+            <center>
+            <img src="img/RockGolem_armature.jpg" /> 
+            </center>
+        </div>
+
+        <div class="slide" data-layout="alt">
+            <h1>Huesos</h1>
+            <center>
+            <img src="img/RockGolem_armature_deform.jpg" /> 
+            </center>
+        </div>
+
+        <div class="slide" data-layout="alt">
+            <h1>Animación por fotogramas claves</h1>
+            <center>
+            <img src="img/RockGolem_armature_animation.jpg" /> 
+            </center>
+        </div>
+		
+		<div class="slide" data-layout="alt">
+            <h2>Colisiones luchador golpeado</h2>
+            <br><br>
+            <!--<center><img src="img/RockGolem_ragdoll.jpg" /></center>-->
+
+            <center>
+                <table>
+                <td>
+                    <img src="img/RockGolem_mesh.jpg" style="width:320px"/>
+                </td>
+                <td>
+                    <img src="img/RockGolem_ragdoll.jpg" style="width:320px"/>
+                </td>
+                </table>
+            </center>  
+            <br>
+            Personajes "descompuesto" en piezas que son las que detecta el impacto de los golpes.
+        </div>
+
+       
+
+        <div class="slide" data-layout="alt"><br><br>
+            <h1>Reducción de polígonos a los modelos (I)</h1><br><br>
+           	<table>
+	           	<tr>
+	           		<td>
+                        <img src="img/decimate_high.jpg" style="width:auto;"/>
+                        <center>2869 vértices</center>
+                    </td>
+                    
+                    <td style="width:20px;"></td>
+	           		<td>
+                        <img src="img/decimate_low.jpg" style="width:auto; margin-right: 0px;"/>
+                        <center>1283 vértices</center>
+                    </td>
+                    
+	           	</tr>
+           	</table>
+        </div>
+
+        <div class="slide" data-layout="alt"><br><br>
+            <h1>Reducción de polígonos a los modelos (II)</h1><br><br>
+            <table>
+                <tr>
+                    <td>
+                        <img src="img/decimate_high_mesh.jpg" style="width:auto;"/>
+                        <center>2869 vértices</center>
+                    </td>
+                    
+                    <td style="width:20px;"></td>
+                    <td>
+                        <img src="img/decimate_low_mesh.jpg" style="width:auto; margin-right: 0px;"/>
+                        <center>1283 vértices</center>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+
+        <div class="slide" data-layout="alt">
+            <h1>Composición de los escenarios</h1>
+            <div class="imglist">
+                <ul>
+                    <li>Cámara</li>
+                    <li>Luz</li>
+                    <li>Suelo, límite izquierdo y derecho</li>
+                    <li>Puntos donde aparecen los personajes (spawn)</li>
+              
+                </ul>
+            </div>
+            <br><br>
+            <center> <img src="img/escenario_suelo_y_luz_3.jpg" style="width:400px;" /> </center>
+        </div>
+
+        <!--
+        <div class="slide" data-layout="alt">
+            <center style="text-align: center;">
+                <div style="font-size:50px;font-weight: bold;margin-top: 30%;">Inteligencia artificial (estados)</div>
+            </center>
+        </div>
+
+        <div class="slide" data-layout="alt">
+            <center><img style="height:600px;" src="img/IA-AFD.jpg" /> </center>
+            <br><br>
+        </div>
+
+        <div class="slide" data-layout="alt">
+            <h1>Estado</h1>
+            <pre class="brush: python">
+                class LuchadorParado(LuchadorEstado):
+                    def __init__(self, personaje):
+                        super().__init__(personaje)
+                        self.personaje.pararAccion()
+                        self.personaje.reproducirAccion(PARADO)
+                        if (bge.logic.globalDict["JuegoLucha"]["juego"].musica == True):
+                            self.personaje.sonidoAndar.reproducir(1)
+                        else:
+                            self.personaje.sonidoAndar.reproducir(0)
+                        self.tiempoParado = 0
+
+                    def avanzar(self):
+                        self.establecerEstado(LuchadorAvanzando(self.personaje))
+
+                    def retroceder(self):
+                        self.establecerEstado(LuchadorRetrocediendo(self.personaje))
+
+                    def proteger(self):
+                        self.establecerEstado(LuchadorProtegiendose(self.personaje))
+
+                    def saltar(self):
+                        self.establecerEstado(LuchadorSaltando(self.personaje))
+
+                    def golpe1(self):
+                        self.establecerEstado(LuchadorGolpeando(self.personaje))
+
+                    def updateIA(self):
+                        parado(self)
+            </pre>
+        </div>
+
+        <div class="slide">
+            <h1>Bot</h1>
+            <pre class="brush: python">
+                def protegerse ( estado ):
+                    estado.tiempoProtegido = estado.tiempoProtegido + 0.001
+                    q = random.random ()
+
+                    if(q<(estado.tiempoProtegido)):
+                        p = random.random()
+                    if(p >0.75):
+                        estado.golpe1()
+                    elif p > 0.5:
+                        estado.avanzar()
+                    elif p > 0.05:
+                        estado.saltar()
+                    else:
+                        estado.retroceder()
+            </pre>
+        </div>
+        -->
+        <div class="slide">
+            <br><br>
+            <h2>Dificultades</h2>
+            <br><br>
+            <div class="imglist">
+                <ul>
+                    
+                    <li>Sincronizar música con el comienzo del juego</li>
+					<li>Libload (función del motor blender para cargar dinámicamente modelos 3D)</li>
+                    <li>Ragdoll o animación para KO</li>
+                    <li>Animación personajes con movimientos de capturas</li>
+                    <li>Calcular a que distancia el bot (personaje controlado por ordenador) alcanza al enemigo</li>
+                </ul>
+            </div>
+        </div>
+
+
+        
+
+
+        <div class="slide" data-layout="alt">
+            <h2>Animación KO</h2>
+            <center>
+                <table>
+                <td>
+                <video id="sampleMovie3" width="480" height="320" controls="1"  loop muted>
+                    <source src="video/blender269.mp4" type="video/mp4" />
+                </video>
+                </td>
+                <td>
+                <video id="sampleMovie4" width="480" height="320" controls="1" loop muted>
+                    <source src="video/blender272.mp4" type="video/mp4" />
+                </video>
+                </td>
+                </table>
+            </center>  
+            <br>
+            <h2>Problemas</h2>
+
+            <div class="imglist">
+            <ul>
+                <li>Animación KO pretendía ser creada a través de código, por que desde el editor tenia un bug en todas las versiones de blender </li>
+                <li>La implemente y funcionaba con una version de blender, pero esa versión tenia un bug con BGUI (libreria para la interfaz de usuario)</li>
+                <li>Tras preguntar tracker de bugs, lo pusieron en futuras correcciones, sin fecha determinada. Asi que finalmente decidí que estaba malgastando mucho tiempo para  una animación que solo saldria al acabar el combate cuando el luchador quedará ko</li>
+            </ul>
+            </div>
+        </div>
+
+        <div class="slide" data-layout="alt">
+            <h2>Mocap (Movimientos capturados)</h2><br><br>
+            Movimientos capturados por la Carnegie Mellon University
+            <a href="http://mocap.cs.cmu.edu/" target="_blank">http://mocap.cs.cmu.edu/</a>
+            <br><br>
+            <center>
+                <table>
+                <td>
+                <video id="sampleMovie1" width="480" height="320" controls="1" loop muted>
+                    <source src="video/13_17-mocap.ogv" type="video/ogg" />
+                </video>
+                </td>
+                <td>
+                <video id="sampleMovie2" width="480" height="320" controls="1" loop muted>
+                    <source src="video/13_17-bvh.mp4" type="video/mp4" />
+                </video>
+                </td>
+                </table>
+            </center>  
+            <br><br>
+            <div class="imglist">
+            <ul>
+                <!--<li>Emparentando los huesos del esqueleto de los personajes 1 a 1 con los del bvh. </li>-->
+                <li>Se producían muchos fallos, las rotaciones no coincidian. </li>
+                <li>Deformacion en animaciones</li>
+                <li>Dedicar mucho tiempo a las correcciones</li>
+                <li>Solución IK (Inverse kinematics o cinemática inversa)</li>
+            </ul>
+            </div>
+        </div>
+
+        <div class="slide" data-layout="alt">
+            <h1>Animaciones</h1><br><br>
+            <center>
+                <table>
+                <td>
+                <video id="sampleMovie1" width="480" height="320" controls="1" loop muted>
+                    <source src="video/no_ik.mp4" type="video/mp4" />
+                </video>
+                <center>Animaciones sin IK</center>
+                </td>
+                <td>
+                <video id="sampleMovie2" width="480" height="320" controls="1" loop muted>
+                    <source src="video/ik.mp4" type="video/mp4" />
+                </video>
+                <center>Animaciones con IK</center>
+                </td>
+                </table>
+            </center>  
+            <br><br><br>
+            Combinando IK con capturas de movimientos obtenemos un resultado más realista.
+        </div>
+        <!--
+        <div class="slide">
+            <h2>Animaciones sin IK</h2>
+            <center>
+                <video id="sampleMovie5" width="640" height="480" controls="1"  loop muted>
+                    <source src="video/no_ik.mp4" type="video/mp4" />
+                </video>
+            </center>
+        </div>
+
+        <div class="slide">
+            <h2>Animaciones con IK</h2>
+           <center>
+                <video id="sampleMovie6" width="640" height="480" controls="1"  loop muted>
+                    <source src="video/ik.mp4" type="video/mp4" />
+                </video>
+            </center>
+                
+        </div>
+
+        -->
+
+        <div class="slide" data-layout="alt">
+            <h2>Calcular a que distancia el bot alcanza al enemigo</h2>
+            <br><br>
+            <center><img src="img/RockGolem_fisica.jpg" /></center>
+        </div>
+
+        
+        
+
+        <div class="slide">
+            <h1>Pruebas</h1>
+            <div class="imglist">
+            <ul>
+                <li>Ejecuto el juego</li>
+                <li>Compruebo con prints después de cada función que se ha ejecutado correctamente</li>
+                <li>Uso de decoradores @ para ahorrar código</li>
+                <li>Salida por consola o en fichero</li>
+            </ul>
+            </div>
+        </div>
+
+        <!--
+
+        <div class="slide">
+            <h1>Pruebas con funciones decoradoras</h1>
+            <pre class="brush: python">
+                def prefuncion(funcion):
+                    def wrapper(*args, **kwargs):
+                        print("\n###################### \n")
+                        print("Estado actual del motor (Game engine)")
+                        print(funcion.__name__, args)
+                        print("Listas de librerias: ", bge.logic.LibList())
+                        print("Escenas, cargadas: ", bge.logic.getSceneList())
+                        print("Escena actual: ", bge.logic.getCurrentScene())
+                        print("Camaras escena actual", bge.logic.getCurrentScene().cameras)
+                        print("Objetos activos: ", bge.logic.getCurrentScene().objects)
+                        print("Objetos inactivos: ", bge.logic.getCurrentScene().objectsInactive)
+                        print("globalDict: ", bge.logic.globalDict)
+                        print("controlador: ", bge.logic.getCurrentController())
+                        f_result = funcion(*args, **kwargs)
+
+                        return f_result
+                    return wrapper     
+            </pre>
+        </div>
+
+
+        <div class="slide">
+            <h1>Pruebas con funciones decoradoras</h1>
+            <pre class="brush: python">
+                def postfuncion(funcion):
+                    def wrapper(*args, **kwargs):
+                        print("\n###################### \n")
+                        print("Estado actual del motor (Game engine)")
+                        print(funcion.__name__, args)
+                        f_result = funcion(*args, **kwargs)
+                        print("Listas de librerias: ", bge.logic.LibList())
+                        print("Escenas, cargadas: ", bge.logic.getSceneList())
+                        print("Escena actual: ", bge.logic.getCurrentScene())
+                        print("Camaras escena actual", bge.logic.getCurrentScene().cameras)
+                        print("Objetos activos: ", bge.logic.getCurrentScene().objects)
+                        print("Objetos inactivos: ", bge.logic.getCurrentScene().objectsInactive)
+                        print("globalDict: ", bge.logic.globalDict)
+                        print("controlador: ", bge.logic.getCurrentController())
+                        return f_result
+                    return wrapper 
+            </pre>
+        </div>
+
+        <div class="slide">
+            <h1>Pruebas con funciones decoradoras</h1>
+            Uso de los decoradores
+            <pre class="brush: python">
+                class JuegoLucha():
+                    @postfuncion
+                    def __init__(self, data):
+                        """
+                        print("Cargando Juego")
+                        print("Escenas, cargadas: ", bge.logic.getSceneList())
+                        print("Librerias blend: ",  bge.logic.LibList())
+                        """
+                        bge.logic.globalDict["ko"] = False #Al empezar el juego estamos seguro nadie ko
+            </pre>
+        </div>
+
+        -->
+
+
+        <div class="slide">
+            <h1>Pruebas</h1>
+            Ejecutando por consola nuestro proyecto veremos el log
+            <pre class="brush: python">
+                blenderplayer main.blend               
+            </pre>
+            <center>
+                <video id="sampleMovie7" width="640" height="480" controls="1" loop muted>
+                    <source src="video/log.mp4" type="video/mp4" />
+                </video>
+            </center>       
+        </div>
+
+        <div class="slide" data-layout="alt">
+            <h1>Pruebas</h1>
+            Para que sea mas usable lo almacenamos en un fichero
+
+            <pre class="brush: python">
+                blenderplayer main.blend > log.txt          
+            </pre>
+            Ventajas:
+            <br><br>
+            <div class="imglist">
+            <ul>
+                <li>Podamos revisar nuestro log más comodamente</li>
+                <li>Los errores de código salen por consola</li>
+            </ul>   
+            </div>
+            <br><br>
+            <a href="log.txt" target="_blank">Ejemplo log</a>
+        </div>
+        <!--
+        <div class="slide" data-layout="alt">
+            <center style="text-align: center;">
+                <div style="font-size:50px;font-weight: bold;margin-top: 30%;">Análisis y diseño</div>
+            </center>
+        </div>
+        
+        <div class="slide" data-layout="alt">
+            <center>
+            
+            <img src="img/ModeloConceptual_juegoLucha.jpg"></img></center>
+        </div>
+
+        <div class="slide" data-layout="alt">
+            <center>
+            
+            <img src="img/analisis.jpg" height="700px" width="auto"></img></center>
+        </div>
+        -->
+        <div class="slide">
+            <br>
+            <h2>Futuras mejoras</h2>
+            <br>
+
+            <div class="imglist">
+            <ul>
+                <li>Añadir luchadores</li>
+                <li>Escenarios</li>
+                <li>Más movimientos y golpes</li>
+                <li>Fuerza, capacidad de salto en JSON</li>
+                <li>Modos de juegos como torneo</li>
+                <li>Inteligencia Artificial más compleja o por niveles de dificultads</li>
+            </ul>
+            </div>
+            
+        </div>
+
+        <div class="slide">
+            <br>
+            <h2>Conclusiones</h2>
+            <br>
+
+            <div class="imglist">
+            <ul>
+                <li>Consolidar los conocimientos que ya poseía</li>
+                <li>Aprender python</li>
+                <li>Manejar git y un repositorio online</li>
+                <li>Trabajar en blender</li>
+                <li>Comunicarme con los desarrolladores de software mediante bug tracker (blender)</li>
+                <li>Usar decoradores</li>
+                <li>Implementar una IA que compita con el jugador</li>
+                <li>Buscar recursos de dominio público y adaptarlo a mis necesidades</li>
+                <li>Aprender a improvisar y encontrar soluciones a los problemas que me surgían</li>
+            </ul>
+            </div>
+            
+        </div>
+
+        <div class="slide">
+            <h1>Bibliografia</h1>
+            <br><br>
+            <div class="imglist">
+            <ul>
+                <li><a href="http://www.blender.org/api/blender_python_api_2_70_release/contents.html" target="_blank">Blender API documentation</a></li>
+                <li><a href="http://blenderartists.org/forum/forumdisplay.php?34-Game-Engine" target="_blank">Blender Artists Game Engine subforum</a></li>
+                <li><a href="https://docs.python.org/2.7/" target="_blank">Python 2.7 API documentation</a></li>
+                <li><a href="http://bgui.readthedocs.org/en/latest/index.html" target="_blank">Bgui Documentation</a></li>
+                <li><a href="http://stackoverflow.com/" target="_blank">Stack Overflow</a></li>
+                <li><a href="http://www.fisicomolon.com/joomla/index.php/tutoriales/blender-2-6x/blender-2-6x-nivel-principiante" target="_blank">Videotutoriales de fisicomolon</a></li>
+                <li><a href="https://wiki.python.org/moin/PythonDecoratorLibrary#Controllable_DIY_debug" target="_blank">Wiki de python</a></li>
+            </ul>
+            </div>
+        </div>
+
+        <div class="slide">
+            <h2>Resultado final</h2>
+            <center>
+                <video id="sampleDemo" width="640" height="480" controls="1"  muted>
+                    <source src="video/demo.mp4" type="video/mp4" />
+                </video>
+            </center>
+        </div>
+
+        <div class="slide" data-layout="alt">
+            <center style="text-align: center;">
+                <div style="font-size:50px;font-weight: bold;margin-top: 30%;">Demostración</div>
+            </center>
+        </div>
+
+        <div class="slide" data-layout="alt">
+            <center style="text-align: center;">
+                <div style="font-size:50px;font-weight: bold;margin-top: 30%;">Gracias por vuestra atención</div>
+            </center>
+        </div>
+
+        <div class="layout" data-name="default">
+            <h1>PFC Juego Lucha 3D</h1>
+            <content></content>
+            <div class="footer">
+                Pablo Alonso Peralta                 
+            </div>
+        </div>
+
+        <div class="layout nofooter" data-name="alt">
+            <content></content>
+        </div>
+        
+    </body>
+</html>
